@@ -42,39 +42,24 @@
 ```
 crypto-pipeline/
 │
-├── schemas/                              # Exigence 5 — Schémas formalisés
-│   ├── trade_schema.json                 # trades_topic
-│   ├── news_schema.json                  # news_topic
-│   ├── fred_schema.json                  # fred_topic
-│   ├── enriched_market_schema.json       # enriched_market_topic
-│   └── alert_schema.json                 # alerts_topic
+├── schemas/                              
+│   ├── trade_schema.json                
+│   ├── news_schema.json                  
+│   ├── fred_schema.json                 
+│   ├── enriched_market_schema.json       
+│   └── alert_schema.json                
 │
-├── kafka/                                # Exigence 1 — Topic Design + Producers
-│   ├── kafka_utils.py                    # Connexion Confluent, validation, create_topics()
-│   ├── producer_binance.py               # Binance WebSocket → trades_topic
-│   └── producer_news.py                  # NewsAPI → news_topic
+├── kafka/                                
+│   ├── producer_binance.py             
+│   └── producer_news.py                  
 │
-├── spark/                                # Exigences 2 + 3 — Streaming + Fan-Out
-│   ├── stream_join.py                    # Stream-to-stream join + windowing
-│   ├── multi_sink_fanout.py              # foreachBatch → DataLake + Supabase + Kafka
-│   ├── enrichment.py                     # Broadcast join FRED (batch → stream)
-│   └── notebooks/
+├── spark/                                
 │       └── crypto_intel_pipeline.ipynb   # Version Databricks Community Edition
+
 │
-├── airflow/                              # Exigence 4 — Batch + Streaming Hybrid
-│   └── dags/
-│       └── fred_ingestion_dag.py         # DAG quotidien FRED → Data Lake
-│
-├── supabase/                             # Exigence 3 — Warehouse Layer
-│   └── migrations/
+├── supabase/                           
 │       ├── 001_create_enriched_market_data.sql
-│       └── 002_create_alerts.sql
-│
-├── tests/                                # Exigence 5 — Validation end-to-end
-│   ├── test_schema_validation.py         # Tests unitaires schemas
-│   └── test_end_to_end.py               # Tests E2E Kafka + Supabase
-│
-├── .env.example                          # Template variables d'environnement
+│             
 ├── requirements.txt                      # Dépendances Python
 └── README.md
 ```
