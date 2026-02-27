@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TradeEvent",
+  "description": "Binance WebSocket trade event — trades_topic",
+  "type": "object",
+  "required": ["event_type", "symbol", "price", "quantity", "trade_time", "is_buyer_maker", "ingested_at"],
+  "additionalProperties": false,
+  "properties": {
+    "event_type":     { "type": "string", "enum": ["trade"] },
+    "event_time":     { "type": "integer" },
+    "symbol":         { "type": "string", "pattern": "^[A-Z]{2,10}USDT$" },
+    "trade_id":       { "type": "integer" },
+    "price":          { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?$" },
+    "quantity":       { "type": "string", "pattern": "^[0-9]+(\\.[0-9]+)?$" },
+    "trade_time":     { "type": "integer" },
+    "is_buyer_maker": { "type": "boolean" },
+    "ingested_at":    { "type": "string", "format": "date-time" }
+  }
+}

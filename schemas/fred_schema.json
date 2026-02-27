@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "FREDDataPoint",
+  "description": "FRED macroeconomic data point — ingested by Airflow batch DAG",
+  "type": "object",
+  "required": ["series_id", "series_name", "value", "observation_date", "ingested_at"],
+  "additionalProperties": false,
+  "properties": {
+    "series_id":        { "type": "string", "enum": ["FEDFUNDS", "CPIAUCSL", "UNRATE", "DGS10", "DEXUSEU"] },
+    "series_name":      { "type": "string" },
+    "value":            { "type": ["number", "null"] },
+    "observation_date": { "type": "string", "format": "date" },
+    "unit":             { "type": "string" },
+    "frequency":        { "type": "string", "enum": ["Daily", "Weekly", "Monthly", "Quarterly", "Annual"] },
+    "ingested_at":      { "type": "string", "format": "date-time" }
+  }
+}

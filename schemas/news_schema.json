@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NewsEvent",
+  "description": "NewsAPI article — news_topic",
+  "type": "object",
+  "required": ["article_id", "title", "url", "published_at", "ingested_at"],
+  "additionalProperties": false,
+  "properties": {
+    "article_id":   { "type": "string" },
+    "source":       {
+      "type": "object",
+      "properties": {
+        "id":   { "type": ["string", "null"] },
+        "name": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "author":       { "type": ["string", "null"] },
+    "title":        { "type": "string", "minLength": 1, "maxLength": 512 },
+    "description":  { "type": ["string", "null"] },
+    "url":          { "type": "string", "format": "uri" },
+    "published_at": { "type": "string", "format": "date-time" },
+    "content":      { "type": ["string", "null"] },
+    "keywords":     { "type": "array", "items": { "type": "string" } },
+    "ingested_at":  { "type": "string", "format": "date-time" }
+  }
+}
